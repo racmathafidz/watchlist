@@ -1,9 +1,11 @@
 import { useState } from 'react'
-import { Transition } from '@headlessui/react'
-import BrandIcon from './brandIcon'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { Transition } from '@headlessui/react'
 
-export default function Header() {
+import BrandIcon from './brandIcon'
+
+export default function Header(props) {
     const [searchBarIsShown, setSearchBarIsShown] = useState(false)
     const [collapseNavbar, setCollapseNavbar] = useState(false)
 
@@ -17,6 +19,10 @@ export default function Header() {
 
     const collapseNavbarHandle = () => {
         setCollapseNavbar(!collapseNavbar)
+    }
+
+    const isActiveLink = ( href ) => {
+        return useRouter().asPath === href ? "active-link" : ""
     }
 
     return (
@@ -37,11 +43,11 @@ export default function Header() {
 
             <div className="hidden w-full sm:flex sm:flex-row">
                 <div className="flex flex-row items-center">
-                    <Link href="/movies">
-                        <a className="text-lg font-title ml-14 transform transition duration-300 hover:text-gray-300">Movies</a>
+                    <Link href="/movie">
+                        <a className={`${isActiveLink("/movie")} text-lg font-title ml-14 transform transition duration-300 hover:text-gray-300`}>Movies</a>
                     </Link>
                     <Link href="/tv">
-                        <a className="text-lg font-title ml-10 transform transition duration-300 hover:text-gray-300">TV Shows</a>
+                        <a className={`${isActiveLink("/tv")} text-lg font-title ml-10 transform transition duration-300 hover:text-gray-300`}>TV Shows</a>
                     </Link>
                 </div>
 
@@ -78,13 +84,13 @@ export default function Header() {
                 leave="transition-opacity duration-150"
                 leaveFrom="opacity-100"
                 leaveTo="opacity-0"
-                className="sm:hidden w-full flex flex-col items-center mt-14 border-b border-gray-800"
+                className="absolute z-50 bg-black sm:hidden w-full flex flex-col items-center mt-14 pt-14 border-b border-gray-800"
             >
-                <Link href="/movies">
-                    <a className="text-lg font-title mb-2 transform transition duration-300 hover:text-gray-300">Movies</a>
+                <Link href="/movie">
+                    <a className={`${isActiveLink("/movie")} text-lg font-title mb-2 transform transition duration-300 hover:text-gray-300`}>Movies</a>
                 </Link>
                 <Link href="/tv">
-                    <a className="text-lg font-title mb-10 transform transition duration-300 hover:text-gray-300">TV Shows</a>
+                    <a className={`${isActiveLink("/tv")} text-lg font-title mb-10 transform transition duration-300 hover:text-gray-300`}>TV Shows</a>
                 </Link>
                 <div className="items-center mb-14">
                     <input type="text" placeholder="Search" className="w-48 text-lg font-title bg-black focus:outline-none" />
