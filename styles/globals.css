@@ -41,6 +41,10 @@ a {
   @apply rounded border border-red-700;
 }
 
+.containers {
+  @apply container mx-auto;
+}
+
 .active-link {
   @apply border-b border-gray-300 hover:border-gray-500;
 }
