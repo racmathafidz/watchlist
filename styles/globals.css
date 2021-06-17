@@ -22,6 +22,25 @@ a {
   box-sizing: border-box;
 }
 
+.swiper-button-next {
+  @apply h-5 w-5 sm:h-8 sm:w-8;
+}
+
+.swiper-button-prev:after,
+.swiper-button-next:after {
+  font-family: swiper-icons;
+  text-transform: none !important;
+  letter-spacing: 0;
+  text-transform: none;
+  font-variant: initial;
+  line-height: 1;
+  @apply text-xl sm:text-3xl font-extrabold;
+}
+
+.react-tabs__tab--selected {
+  @apply rounded border border-red-700;
+}
+
 .active-link {
   @apply border-b border-gray-300 hover:border-gray-500;
 }
