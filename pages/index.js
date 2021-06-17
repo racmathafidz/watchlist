@@ -16,36 +16,38 @@ export default function Home(props) {
 
   return (
     <Layout title="Watchlist">
-      <main className="container mx-auto">
-        <Swiper 
-          spaceBetween={30} 
-          centeredSlides={true} 
-          autoplay={{
-            "delay": 2500,
-            "disableOnInteraction": false }}           
-          navigation={true} 
-          className="mySwiper"
-        >
-          {allTrendingMainCarousel.map((items, index) => (
-            <SwiperSlide key={index}>
-              <div className="h-56 sm:h-96 lg:h-136">
-                <img
-                  className="w-full xl:-top-16"
-                  src={`https://image.tmdb.org/t/p/original/${items.backdrop_path}`}
-                  alt="Trending Carousel"
-                />
-                <Link href="">
-                  <a className="bottom-0 left-0 absolute pl-5 pb-5 sm:pl-10 lg:pl-14 xl:pl-20 xl:pb-10 bg-gradient-to-t from-black via-truegray-900">
-                    <h1 className="text-2xl sm:text-3xl lg:text-5xl font-semibold mb-1 w-4/5">{items.media_type === "tv" ? items.name : items.title}</h1>
-                    <p className="text-base sm:text-lg text-justify font-light h-7 sm:h-24 lg:h-auto w-4/5">{items.overview}</p>
-                  </a>
-                </Link>
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+      <main>
+        <div className="containers">
+          <Swiper 
+            spaceBetween={30} 
+            centeredSlides={true} 
+            autoplay={{
+              "delay": 2500,
+              "disableOnInteraction": false }}           
+            navigation={true} 
+            className="mySwiper"
+          >
+            {allTrendingMainCarousel.map((items, index) => (
+              <SwiperSlide key={index}>
+                <div className="h-56 sm:h-96 lg:h-140">
+                  <img
+                    className="w-full xl:-top-16"
+                    src={`https://image.tmdb.org/t/p/original/${items.backdrop_path}`}
+                    alt="Trending Carousel"
+                  />
+                  <Link href="">
+                    <a className="bottom-0 left-0 absolute pl-5 pb-5 sm:pl-10 lg:pl-14 xl:pl-20 xl:pb-10 bg-gradient-to-t from-black via-truegray-900">
+                      <h1 className="text-2xl sm:text-3xl lg:text-5xl font-semibold mb-1 w-4/5">{items.media_type === "tv" ? items.name : items.title}</h1>
+                      <p className="text-base sm:text-lg text-justify font-light h-7 sm:h-24 lg:h-auto w-4/5">{items.overview}</p>
+                    </a>
+                  </Link>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
 
-        <div className="px-3 sm:px-5 xl:px-0">
+        <div className="containers px-3 sm:px-5 xl:px-0">
           <Tabs>
             <div className="flex items-center">
               <h1 className="text-3xl py-5 mt-5 mr-3">Trending</h1>
@@ -197,7 +199,7 @@ export default function Home(props) {
           </Tabs>
         </div>
 
-        <div className="px-3 sm:px-5 xl:px-0">
+        <div className="containers px-3 sm:px-5 xl:px-0">
           <Tabs>
             <div className="flex items-center">
               <h1 className="text-3xl py-5 mr-3">Popular</h1>
@@ -302,7 +304,7 @@ export default function Home(props) {
           </Tabs>
         </div>
 
-        <div className="px-3 sm:px-5 xl:px-0">
+        <div className="containers px-3 sm:px-5 xl:px-0">
           <h1 className="text-3xl py-5">Movies In Theaters</h1>
           <Swiper 
             slidesPerView={1} 
@@ -350,7 +352,7 @@ export default function Home(props) {
           </Swiper>
         </div>
 
-        <div className="px-3 sm:px-5 xl:px-0">
+        <div className="containers px-3 sm:px-5 xl:px-0">
           <h1 className="text-3xl py-5">Airing TV Shows</h1>
           <Swiper 
             slidesPerView={1} 
@@ -396,6 +398,20 @@ export default function Home(props) {
               </SwiperSlide>
             ))}
           </Swiper>
+        </div>
+
+        <div className="w-full h-56 sm:h-96 lg:h-120">
+          <img
+            className="w-48 sm:w-96 lg:w-108 xl:w-180 h-56 sm:h-96 lg:h-120 object-center object-cover z-0"
+            src={`https://image.tmdb.org/t/p/original/${allTrending[0].backdrop_path}`}
+            alt="greetings"
+            align="right"
+          />
+          <div className="flex items-center z-10 absolute w-full h-56 sm:h-96 lg:h-120 bg-gradient-to-r from-black via-black">
+            <div className="w-1/2 italic text-center my-auto text-base sm:text-2xl lg:text-3xl font-extralight pb-20">
+              "Sit back, relax, and enjoy the show" <br/>- Watchlist Team
+            </div>
+          </div>
         </div>
 
       </main>
