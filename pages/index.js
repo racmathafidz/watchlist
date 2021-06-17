@@ -404,7 +404,7 @@ export default function Home(props) {
           <img
             className="w-48 sm:w-96 lg:w-108 xl:w-180 h-56 sm:h-96 lg:h-120 object-center object-cover z-0"
             src={`https://image.tmdb.org/t/p/original/${allTrending[0].backdrop_path}`}
-            alt="greetings"
+            alt="closing word"
             align="right"
           />
           <div className="flex items-center z-10 absolute w-full h-56 sm:h-96 lg:h-120 bg-gradient-to-r from-black via-black">
