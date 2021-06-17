@@ -9,7 +9,7 @@ SwiperCore.use([Autoplay, Navigation]);
 
 export default function Home(props) {
   
-  const { allTrending, movieTrending, tvTrending } = props
+  const { allTrending, movieTrending, tvTrending, moviePopular, tvPopular } = props
 
   // Get 3 Movie / Tv Show for Carousel
   const allTrendingMainCarousel = allTrending.filter( (items, index) => { return index <= 4 })
@@ -197,6 +197,111 @@ export default function Home(props) {
           </Tabs>
         </div>
 
+        <div className="px-3 sm:px-5 xl:px-0">
+          <Tabs>
+            <div className="flex items-center">
+              <h1 className="text-3xl py-5 mr-3">Popular</h1>
+              <TabList className="mt-2">
+                <Tab><h1 className="text-base sm:text-lg">Movies</h1></Tab>
+                <Tab><h1 className="text-base sm:text-lg">TV Shows</h1></Tab>
+              </TabList>
+            </div>
+
+            <TabPanel>
+              <Swiper 
+                slidesPerView={1} 
+                spaceBetween={10} 
+                navigation={true}
+                breakpoints={{
+                "320": {
+                  "slidesPerView": 3,
+                  "spaceBetween": 10
+                },
+                "640": {
+                  "slidesPerView": 4,
+                  "spaceBetween": 10
+                },
+                "1024": {
+                  "slidesPerView": 5,
+                  "spaceBetween": 60
+                },
+                "1280": {
+                  "slidesPerView": 6,
+                  "spaceBetween": 80
+                }
+                }} 
+                className="mySwiper"
+              >
+                {moviePopular.map((items, index) => (
+                  <SwiperSlide key={index}>
+                    <Link href="">
+                      <a>
+                        <img
+                          src={`https://image.tmdb.org/t/p/w500/${items.poster_path}`}
+                          width="150"
+                          height="225"
+                          alt="all Trending Carousel"
+                        />
+                      </a>
+                    </Link>
+                    <Link href="">
+                      <a>
+                        <h1 className="mt-1 font-medium text-base sm:text-lg">{items.title}</h1>
+                      </a>
+                    </Link>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </TabPanel>
+            <TabPanel>
+              <Swiper 
+                slidesPerView={1} 
+                spaceBetween={10} 
+                navigation={true}
+                breakpoints={{
+                "320": {
+                  "slidesPerView": 3,
+                  "spaceBetween": 10
+                },
+                "640": {
+                  "slidesPerView": 4,
+                  "spaceBetween": 10
+                },
+                "1024": {
+                  "slidesPerView": 5,
+                  "spaceBetween": 60
+                },
+                "1280": {
+                  "slidesPerView": 6,
+                  "spaceBetween": 80
+                }
+                }} 
+                className="mySwiper"
+              >
+                {tvPopular.map((items, index) => (
+                  <SwiperSlide key={index}>
+                    <Link href="">
+                      <a>
+                        <img
+                          src={`https://image.tmdb.org/t/p/w500/${items.poster_path}`}
+                          width="150"
+                          height="225"
+                          alt="all Trending Carousel"
+                        />
+                      </a>
+                    </Link>
+                    <Link href="">
+                      <a>
+                        <h1 className="mt-1 font-medium text-base sm:text-lg">{items.name}</h1>
+                      </a>
+                    </Link>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </TabPanel>
+          </Tabs>
+        </div>
+
       </main>
     </Layout>
   )
@@ -212,11 +317,19 @@ export const getStaticProps = async () => {
   const tvTrendingRes = await fetch(`https://api.themoviedb.org/3/trending/tv/day?api_key=${process.env.API_KEY}`)
   const tvTrending = await tvTrendingRes.json()
 
+  const moviePopularRes = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.API_KEY}&language=en-US&page=1`)
+  const moviePopular = await moviePopularRes.json()
+
+  const tvPopularRes = await fetch(`https://api.themoviedb.org/3/tv/popular?api_key=${process.env.API_KEY}&language=en-US&page=1`)
+  const tvPopular = await tvPopularRes.json()
+
   return {
     props: {
       allTrending: allTrending.results,
       movieTrending: movieTrending.results,
-      tvTrending: tvTrending.results
+      tvTrending: tvTrending.results,
+      moviePopular: moviePopular.results,
+      tvPopular: tvPopular.results
     }
   }
 };
