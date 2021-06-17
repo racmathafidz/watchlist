@@ -9,7 +9,7 @@ SwiperCore.use([Autoplay, Navigation]);
 
 export default function Home(props) {
   
-  const { allTrending, movieTrending, tvTrending, moviePopular, tvPopular } = props
+  const { allTrending, movieTrending, tvTrending, moviePopular, tvPopular, movieInTheater, tvAiring } = props
 
   // Get 3 Movie / Tv Show for Carousel
   const allTrendingMainCarousel = allTrending.filter( (items, index) => { return index <= 4 })
@@ -37,7 +37,7 @@ export default function Home(props) {
                 <Link href="">
                   <a className="bottom-0 left-0 absolute pl-5 pb-5 sm:pl-10 lg:pl-14 xl:pl-20 xl:pb-10 bg-gradient-to-t from-black via-truegray-900">
                     <h1 className="text-2xl sm:text-3xl lg:text-5xl font-semibold mb-1 w-4/5">{items.media_type === "tv" ? items.name : items.title}</h1>
-                    <p className="overflow-clip text-base sm:text-lg text-justify font-light h-7 sm:h-24 lg:h-auto w-4/5">{items.overview}</p>
+                    <p className="text-base sm:text-lg text-justify font-light h-7 sm:h-24 lg:h-auto w-4/5">{items.overview}</p>
                   </a>
                 </Link>
               </div>
@@ -135,7 +135,7 @@ export default function Home(props) {
                           src={`https://image.tmdb.org/t/p/w500/${items.poster_path}`}
                           width="150"
                           height="225"
-                          alt="all Trending Carousel"
+                          alt="movie Trending Carousel"
                         />
                       </a>
                     </Link>
@@ -181,7 +181,7 @@ export default function Home(props) {
                           src={`https://image.tmdb.org/t/p/w500/${items.poster_path}`}
                           width="150"
                           height="225"
-                          alt="all Trending Carousel"
+                          alt="tv Trending Carousel"
                         />
                       </a>
                     </Link>
@@ -240,7 +240,7 @@ export default function Home(props) {
                           src={`https://image.tmdb.org/t/p/w500/${items.poster_path}`}
                           width="150"
                           height="225"
-                          alt="all Trending Carousel"
+                          alt="movie popular Carousel"
                         />
                       </a>
                     </Link>
@@ -286,7 +286,7 @@ export default function Home(props) {
                           src={`https://image.tmdb.org/t/p/w500/${items.poster_path}`}
                           width="150"
                           height="225"
-                          alt="all Trending Carousel"
+                          alt="tv popular Carousel"
                         />
                       </a>
                     </Link>
@@ -300,6 +300,102 @@ export default function Home(props) {
               </Swiper>
             </TabPanel>
           </Tabs>
+        </div>
+
+        <div className="px-3 sm:px-5 xl:px-0">
+          <h1 className="text-3xl py-5">Movies In Theaters</h1>
+          <Swiper 
+            slidesPerView={1} 
+            spaceBetween={10} 
+            navigation={true}
+            breakpoints={{
+            "320": {
+              "slidesPerView": 3,
+              "spaceBetween": 10
+            },
+            "640": {
+              "slidesPerView": 4,
+              "spaceBetween": 10
+            },
+            "1024": {
+              "slidesPerView": 5,
+              "spaceBetween": 60
+            },
+            "1280": {
+              "slidesPerView": 6,
+              "spaceBetween": 80
+            }
+            }} 
+            className="mySwiper"
+          >
+            {movieInTheater.map((items, index) => (
+              <SwiperSlide key={index}>
+                <Link href="">
+                  <a>
+                    <img
+                      src={`https://image.tmdb.org/t/p/w500/${items.poster_path}`}
+                      width="150"
+                      height="225"
+                      alt="movies in theaters"
+                    />
+                  </a>
+                </Link>
+                <Link href="">
+                  <a>
+                    <h1 className="mt-1 font-medium text-base sm:text-lg">{items.title}</h1>
+                  </a>
+                </Link>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+
+        <div className="px-3 sm:px-5 xl:px-0">
+          <h1 className="text-3xl py-5">Airing TV Shows</h1>
+          <Swiper 
+            slidesPerView={1} 
+            spaceBetween={10} 
+            navigation={true}
+            breakpoints={{
+            "320": {
+              "slidesPerView": 3,
+              "spaceBetween": 10
+            },
+            "640": {
+              "slidesPerView": 4,
+              "spaceBetween": 10
+            },
+            "1024": {
+              "slidesPerView": 5,
+              "spaceBetween": 60
+            },
+            "1280": {
+              "slidesPerView": 6,
+              "spaceBetween": 80
+            }
+            }} 
+            className="mySwiper"
+          >
+            {tvAiring.map((items, index) => (
+              <SwiperSlide key={index}>
+                <Link href="">
+                  <a>
+                    <img
+                      src={`https://image.tmdb.org/t/p/w500/${items.poster_path}`}
+                      width="150"
+                      height="225"
+                      alt="movies in theaters"
+                    />
+                  </a>
+                </Link>
+                <Link href="">
+                  <a>
+                    <h1 className="mt-1 font-medium text-base sm:text-lg">{items.name}</h1>
+                  </a>
+                </Link>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
 
       </main>
@@ -323,13 +419,21 @@ export const getStaticProps = async () => {
   const tvPopularRes = await fetch(`https://api.themoviedb.org/3/tv/popular?api_key=${process.env.API_KEY}&language=en-US&page=1`)
   const tvPopular = await tvPopularRes.json()
 
+  const movieInTheaterRes = await fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.API_KEY}&language=en-US&page=1`)
+  const movieInTheater = await movieInTheaterRes.json()
+
+  const tvAiringRes = await fetch(`https://api.themoviedb.org/3/tv/on_the_air?api_key=${process.env.API_KEY}&language=en-US&page=1`)
+  const tvAiring = await tvAiringRes.json()
+
   return {
     props: {
       allTrending: allTrending.results,
       movieTrending: movieTrending.results,
       tvTrending: tvTrending.results,
       moviePopular: moviePopular.results,
-      tvPopular: tvPopular.results
+      tvPopular: tvPopular.results,
+      movieInTheater: movieInTheater.results,
+      tvAiring: tvAiring.results,
     }
   }
 };
