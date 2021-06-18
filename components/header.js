@@ -26,7 +26,7 @@ export default function Header(props) {
     }
 
     return (
-        <header className="flex flex-col sm:flex-row w-full items-center container mx-auto px-4 py-3 sm:p-5 justify-between sm:justify-start">
+        <header className="flex flex-col sm:flex-row w-full items-center container mx-auto py-3 sm:py-5 xl:py-5 px-3 sm:px-5 xl:px-0 containers justify-between sm:justify-start">
             <div className="w-full sm:w-auto flex justify-between">
                 <BrandIcon/>
 
@@ -57,7 +57,7 @@ export default function Header(props) {
                         className="focus:outline-none"
                         onClick={searchButtonHandle}
                     >
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white mr-4 transform transition duration-300 hover:text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white mr-4 xl:mr-2 transform transition duration-300 hover:text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                         </svg>
                     </button>
