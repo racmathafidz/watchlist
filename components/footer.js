@@ -1,5 +1,3 @@
-import Image from 'next/image'
-
 import BrandIcon from './brandIcon'
 
 export default function footer() {

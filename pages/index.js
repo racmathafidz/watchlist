@@ -22,7 +22,7 @@ export default function Home(props) {
             spaceBetween={30} 
             centeredSlides={true} 
             autoplay={{
-              "delay": 2500,
+              "delay": 3000,
               "disableOnInteraction": false }}           
             navigation={true} 
             className="mySwiper"
@@ -408,7 +408,7 @@ export default function Home(props) {
             align="right"
           />
           <div className="flex items-center z-10 absolute w-full h-56 sm:h-96 lg:h-120 bg-gradient-to-r from-black via-black">
-            <div className="w-1/2 italic text-center my-auto text-base sm:text-2xl lg:text-3xl font-extralight pb-20">
+            <div className="w-1/2 my-auto italic text-gray-100 text-center text-base sm:text-2xl lg:text-3xl font-extralight pb-20">
               "Sit back, relax, and enjoy the show" <br/>- Watchlist Team
             </div>
           </div>
