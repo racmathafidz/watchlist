@@ -97,7 +97,7 @@ export default function Home(props) {
                     </Link>
                     <Link href="">
                       <a>
-                        <h1 className="mt-1 font-medium text-base sm:text-lg">{items.media_type === "tv" ? items.name : items.title}</h1>
+                        <h1 className="mt-1 text-base sm:text-lg">{items.media_type === "tv" ? items.name : items.title}</h1>
                       </a>
                     </Link>
                   </SwiperSlide>
@@ -143,7 +143,7 @@ export default function Home(props) {
                     </Link>
                     <Link href="">
                       <a>
-                        <h1 className="mt-1 font-medium text-base sm:text-lg">{items.title}</h1>
+                        <h1 className="mt-1 text-base sm:text-lg">{items.title}</h1>
                       </a>
                     </Link>
                   </SwiperSlide>
@@ -189,7 +189,7 @@ export default function Home(props) {
                     </Link>
                     <Link href="">
                       <a>
-                        <h1 className="mt-1 font-medium text-base sm:text-lg">{items.name}</h1>
+                        <h1 className="mt-1 text-base sm:text-lg">{items.name}</h1>
                       </a>
                     </Link>
                   </SwiperSlide>
@@ -248,7 +248,7 @@ export default function Home(props) {
                     </Link>
                     <Link href="">
                       <a>
-                        <h1 className="mt-1 font-medium text-base sm:text-lg">{items.title}</h1>
+                        <h1 className="mt-1 text-base sm:text-lg">{items.title}</h1>
                       </a>
                     </Link>
                   </SwiperSlide>
@@ -294,7 +294,7 @@ export default function Home(props) {
                     </Link>
                     <Link href="">
                       <a>
-                        <h1 className="mt-1 font-medium text-base sm:text-lg">{items.name}</h1>
+                        <h1 className="mt-1 text-base sm:text-lg">{items.name}</h1>
                       </a>
                     </Link>
                   </SwiperSlide>
@@ -344,7 +344,7 @@ export default function Home(props) {
                 </Link>
                 <Link href="">
                   <a>
-                    <h1 className="mt-1 font-medium text-base sm:text-lg">{items.title}</h1>
+                    <h1 className="mt-1 text-base sm:text-lg">{items.title}</h1>
                   </a>
                 </Link>
               </SwiperSlide>
@@ -392,7 +392,7 @@ export default function Home(props) {
                 </Link>
                 <Link href="">
                   <a>
-                    <h1 className="mt-1 font-medium text-base sm:text-lg">{items.name}</h1>
+                    <h1 className="mt-1 text-base sm:text-lg">{items.name}</h1>
                   </a>
                 </Link>
               </SwiperSlide>
