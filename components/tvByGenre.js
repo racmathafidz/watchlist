@@ -15,7 +15,7 @@ export default function tvByGenre(props) {
 
     return (
         <div className="containers px-3 sm:px-5 xl:px-0">
-          <h1 className="text-3xl py-5">Action & Adventures</h1>
+          <h1 className="text-3xl py-5">Get In On the Action</h1>
           <Swiper 
             slidesPerView={1} 
             spaceBetween={10} 
@@ -62,7 +62,7 @@ export default function tvByGenre(props) {
             ))}
           </Swiper>
 
-          <h1 className="text-3xl py-5">Comedy</h1>
+          <h1 className="text-3xl py-5">Get Laugh</h1>
           <Swiper 
             slidesPerView={1} 
             spaceBetween={10} 
@@ -109,7 +109,7 @@ export default function tvByGenre(props) {
             ))}
           </Swiper>
 
-          <h1 className="text-3xl py-5">Drama</h1>
+          <h1 className="text-3xl py-5">The Drama</h1>
           <Swiper 
             slidesPerView={1} 
             spaceBetween={10} 
@@ -156,7 +156,7 @@ export default function tvByGenre(props) {
             ))}
           </Swiper>
 
-          <h1 className="text-3xl py-5">Animation</h1>
+          <h1 className="text-3xl py-5">Exciting Animation</h1>
           <Swiper 
             slidesPerView={1} 
             spaceBetween={10} 

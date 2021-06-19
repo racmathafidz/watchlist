@@ -15,7 +15,7 @@ export default function movieByGenre(props) {
 
     return (
         <div className="containers px-3 sm:px-5 xl:px-0">
-          <h1 className="text-3xl py-5">Action</h1>
+          <h1 className="text-3xl py-5">Get In On the Action</h1>
           <Swiper 
             slidesPerView={1} 
             spaceBetween={10} 
@@ -62,7 +62,7 @@ export default function movieByGenre(props) {
             ))}
           </Swiper>
 
-          <h1 className="text-3xl py-5">Comedy</h1>
+          <h1 className="text-3xl py-5">Get Laugh</h1>
           <Swiper 
             slidesPerView={1} 
             spaceBetween={10} 
@@ -109,7 +109,7 @@ export default function movieByGenre(props) {
             ))}
           </Swiper>
 
-          <h1 className="text-3xl py-5">Horror</h1>
+          <h1 className="text-3xl py-5">The Horror</h1>
           <Swiper 
             slidesPerView={1} 
             spaceBetween={10} 
@@ -156,7 +156,7 @@ export default function movieByGenre(props) {
             ))}
           </Swiper>
 
-          <h1 className="text-3xl py-5">Romance</h1>
+          <h1 className="text-3xl py-5">Romantic Movies</h1>
           <Swiper 
             slidesPerView={1} 
             spaceBetween={10} 
