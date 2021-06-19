@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import SwiperCore, { Navigation } from 'swiper/core'
 
@@ -7,6 +8,10 @@ SwiperCore.use( Navigation );
 export default function TvShowsAiring(props) {
 
     const { tvShowsAiringData } = props
+
+    const imageLoader = ({ src }) => {
+      return `https://image.tmdb.org/t/p/w500/${src}`
+    }
 
     return (
         <div className="containers px-3 sm:px-5 xl:px-0">
@@ -39,12 +44,13 @@ export default function TvShowsAiring(props) {
               <SwiperSlide key={index}>
                 <Link href="">
                   <a>
-                    <img
-                      src={`https://image.tmdb.org/t/p/w500/${items.poster_path}`}
-                      width="150"
-                      height="225"
-                      alt="movies in theaters"
-                    />
+                    <Image
+                      loader={imageLoader}
+                      src={items.poster_path}
+                      alt="airing tv shows"
+                      width={150}
+                      height={225}
+                    />                 
                   </a>
                 </Link>
                 <Link href="">
