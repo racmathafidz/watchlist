@@ -9,9 +9,13 @@ export default function tvByGenre(props) {
 
     const { actionData, comedyData, dramaData, animationData } = props
 
+    const imageLoader = ({ src }) => {
+      return `https://image.tmdb.org/t/p/w500/${src}`
+    }
+
     return (
         <div className="containers px-3 sm:px-5 xl:px-0">
-          <h1 className="text-3xl py-5">Action</h1>
+          <h1 className="text-3xl py-5">Action & Adventures</h1>
           <Swiper 
             slidesPerView={1} 
             spaceBetween={10} 
@@ -40,12 +44,13 @@ export default function tvByGenre(props) {
               <SwiperSlide key={index}>
                 <Link href="">
                   <a>
-                    <img
-                      src={`https://image.tmdb.org/t/p/w500/${items.poster_path}`}
-                      width="150"
-                      height="225"
-                      alt="movies in theaters"
-                    />
+                    <Image
+                      loader={imageLoader}
+                      src={items.poster_path}
+                      alt="action & adventures tv shows"
+                      width={150}
+                      height={225}
+                    />                     
                   </a>
                 </Link>
                 <Link href="">
@@ -86,12 +91,13 @@ export default function tvByGenre(props) {
               <SwiperSlide key={index}>
                 <Link href="">
                   <a>
-                    <img
-                      src={`https://image.tmdb.org/t/p/w500/${items.poster_path}`}
-                      width="150"
-                      height="225"
-                      alt="movies in theaters"
-                    />
+                    <Image
+                      loader={imageLoader}
+                      src={items.poster_path}
+                      alt="comedy tv shows"
+                      width={150}
+                      height={225}
+                    />                      
                   </a>
                 </Link>
                 <Link href="">
@@ -132,12 +138,13 @@ export default function tvByGenre(props) {
               <SwiperSlide key={index}>
                 <Link href="">
                   <a>
-                    <img
-                      src={`https://image.tmdb.org/t/p/w500/${items.poster_path}`}
-                      width="150"
-                      height="225"
-                      alt="movies in theaters"
-                    />
+                    <Image
+                      loader={imageLoader}
+                      src={items.poster_path}
+                      alt="drama tv shows"
+                      width={150}
+                      height={225}
+                    />                      
                   </a>
                 </Link>
                 <Link href="">
@@ -178,12 +185,13 @@ export default function tvByGenre(props) {
               <SwiperSlide key={index}>
                 <Link href="">
                   <a>
-                    <img
-                      src={`https://image.tmdb.org/t/p/w500/${items.poster_path}`}
-                      width="150"
-                      height="225"
-                      alt="movies in theaters"
-                    />
+                    <Image
+                      loader={imageLoader}
+                      src={items.poster_path}
+                      alt="animation tv shows"
+                      width={150}
+                      height={225}
+                    />    
                   </a>
                 </Link>
                 <Link href="">

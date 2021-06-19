@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import SwiperCore, { Navigation } from 'swiper/core'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
@@ -8,6 +9,10 @@ SwiperCore.use( Navigation );
 export default function Trending(props) {
 
     const { allTrendingData, movieTrendingData, tvTrendingData, allTrending, movieTrendingOnly, tvTrendingOnly } = props
+
+    const imageLoader = ({ src }) => {
+      return `https://image.tmdb.org/t/p/w500/${src}`
+    }
 
     if (allTrending === true) {
         return (
@@ -51,12 +56,13 @@ export default function Trending(props) {
                       <SwiperSlide key={index}>
                         <Link href="">
                           <a>
-                            <img
-                              src={`https://image.tmdb.org/t/p/w500/${items.poster_path}`}
-                              width="150"
-                              height="225"
-                              alt="all Trending Carousel"
-                            />
+                            <Image
+                              loader={imageLoader}
+                              src={items.poster_path}
+                              alt="all trending"
+                              width={150}
+                              height={225}
+                            />                            
                           </a>
                         </Link>
                         <Link href="">
@@ -97,11 +103,12 @@ export default function Trending(props) {
                       <SwiperSlide key={index}>
                         <Link href="">
                           <a>
-                            <img
-                              src={`https://image.tmdb.org/t/p/w500/${items.poster_path}`}
-                              width="150"
-                              height="225"
-                              alt="movie Trending Carousel"
+                            <Image
+                              loader={imageLoader}
+                              src={items.poster_path}
+                              alt="movie trending"
+                              width={150}
+                              height={225}
                             />
                           </a>
                         </Link>
@@ -143,11 +150,12 @@ export default function Trending(props) {
                       <SwiperSlide key={index}>
                         <Link href="">
                           <a>
-                            <img
-                              src={`https://image.tmdb.org/t/p/w500/${items.poster_path}`}
-                              width="150"
-                              height="225"
-                              alt="tv Trending Carousel"
+                            <Image
+                              loader={imageLoader}
+                              src={items.poster_path}
+                              alt="tv trending"
+                              width={150}
+                              height={225}
                             />
                           </a>
                         </Link>
@@ -198,11 +206,12 @@ export default function Trending(props) {
                       <SwiperSlide key={index}>
                         <Link href="">
                           <a>
-                            <img
-                              src={`https://image.tmdb.org/t/p/w500/${items.poster_path}`}
-                              width="150"
-                              height="225"
-                              alt="movie Trending Carousel"
+                            <Image
+                              loader={imageLoader}
+                              src={items.poster_path}
+                              alt="movie trending"
+                              width={150}
+                              height={225}
                             />
                           </a>
                         </Link>
@@ -251,11 +260,12 @@ export default function Trending(props) {
                       <SwiperSlide key={index}>
                         <Link href="">
                           <a>
-                            <img
-                              src={`https://image.tmdb.org/t/p/w500/${items.poster_path}`}
-                              width="150"
-                              height="225"
-                              alt="tv Trending Carousel"
+                            <Image
+                              loader={imageLoader}
+                              src={items.poster_path}
+                              alt="tv trending"
+                              width={150}
+                              height={225}
                             />
                           </a>
                         </Link>

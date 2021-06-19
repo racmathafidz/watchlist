@@ -9,6 +9,10 @@ export default function movieByGenre(props) {
 
     const { actionData, comedyData, horrorData, romanceData } = props
 
+    const imageLoader = ({ src }) => {
+      return `https://image.tmdb.org/t/p/w500/${src}`
+    }
+
     return (
         <div className="containers px-3 sm:px-5 xl:px-0">
           <h1 className="text-3xl py-5">Action</h1>
@@ -40,11 +44,12 @@ export default function movieByGenre(props) {
               <SwiperSlide key={index}>
                 <Link href="">
                   <a>
-                    <img
-                      src={`https://image.tmdb.org/t/p/w500/${items.poster_path}`}
-                      width="150"
-                      height="225"
-                      alt="movies in theaters"
+                    <Image
+                      loader={imageLoader}
+                      src={items.poster_path}
+                      alt="action movies"
+                      width={150}
+                      height={225}
                     />
                   </a>
                 </Link>
@@ -86,11 +91,12 @@ export default function movieByGenre(props) {
               <SwiperSlide key={index}>
                 <Link href="">
                   <a>
-                    <img
-                      src={`https://image.tmdb.org/t/p/w500/${items.poster_path}`}
-                      width="150"
-                      height="225"
-                      alt="movies in theaters"
+                    <Image
+                      loader={imageLoader}
+                      src={items.poster_path}
+                      alt="comedy movies"
+                      width={150}
+                      height={225}
                     />
                   </a>
                 </Link>
@@ -132,11 +138,12 @@ export default function movieByGenre(props) {
               <SwiperSlide key={index}>
                 <Link href="">
                   <a>
-                    <img
-                      src={`https://image.tmdb.org/t/p/w500/${items.poster_path}`}
-                      width="150"
-                      height="225"
-                      alt="movies in theaters"
+                    <Image
+                      loader={imageLoader}
+                      src={items.poster_path}
+                      alt="horror movies"
+                      width={150}
+                      height={225}
                     />
                   </a>
                 </Link>
@@ -178,11 +185,12 @@ export default function movieByGenre(props) {
               <SwiperSlide key={index}>
                 <Link href="">
                   <a>
-                    <img
-                      src={`https://image.tmdb.org/t/p/w500/${items.poster_path}`}
-                      width="150"
-                      height="225"
-                      alt="movies in theaters"
+                    <Image
+                      loader={imageLoader}
+                      src={items.poster_path}
+                      alt="romance movies"
+                      width={150}
+                      height={225}
                     />
                   </a>
                 </Link>

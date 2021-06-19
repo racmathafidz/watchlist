@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import SwiperCore, { Navigation } from 'swiper/core'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
@@ -8,6 +9,10 @@ SwiperCore.use( Navigation );
 export default function Popular(props) {
 
     const { moviePopularData, tvPopularData, allPopular, moviePopularOnly, tvPopularOnly } = props
+
+    const imageLoader = ({ src }) => {
+      return `https://image.tmdb.org/t/p/w500/${src}`
+    }
 
     if (allPopular === true) {
         return (
@@ -50,12 +55,13 @@ export default function Popular(props) {
                       <SwiperSlide key={index}>
                         <Link href="">
                           <a>
-                            <img
-                              src={`https://image.tmdb.org/t/p/w500/${items.poster_path}`}
-                              width="150"
-                              height="225"
-                              alt="movie popular Carousel"
-                            />
+                            <Image
+                              loader={imageLoader}
+                              src={items.poster_path}
+                              alt="movie popular"
+                              width={150}
+                              height={225}
+                            />                            
                           </a>
                         </Link>
                         <Link href="">
@@ -96,12 +102,13 @@ export default function Popular(props) {
                       <SwiperSlide key={index}>
                         <Link href="">
                           <a>
-                            <img
-                              src={`https://image.tmdb.org/t/p/w500/${items.poster_path}`}
-                              width="150"
-                              height="225"
-                              alt="tv popular Carousel"
-                            />
+                            <Image
+                              loader={imageLoader}
+                              src={items.poster_path}
+                              alt="tv popular"
+                              width={150}
+                              height={225}
+                            />                            
                           </a>
                         </Link>
                         <Link href="">
@@ -151,12 +158,13 @@ export default function Popular(props) {
                     <SwiperSlide key={index}>
                     <Link href="">
                         <a>
-                        <img
-                            src={`https://image.tmdb.org/t/p/w500/${items.poster_path}`}
-                            width="150"
-                            height="225"
-                            alt="movie popular Carousel"
-                        />
+                          <Image
+                            loader={imageLoader}
+                            src={items.poster_path}
+                            alt="movie popular"
+                            width={150}
+                            height={225}
+                          /> 
                         </a>
                     </Link>
                     <Link href="">
@@ -204,12 +212,13 @@ export default function Popular(props) {
                       <SwiperSlide key={index}>
                         <Link href="">
                           <a>
-                            <img
-                              src={`https://image.tmdb.org/t/p/w500/${items.poster_path}`}
-                              width="150"
-                              height="225"
-                              alt="tv popular Carousel"
-                            />
+                            <Image
+                              loader={imageLoader}
+                              src={items.poster_path}
+                              alt="tv popular"
+                              width={150}
+                              height={225}
+                            /> 
                           </a>
                         </Link>
                         <Link href="">
