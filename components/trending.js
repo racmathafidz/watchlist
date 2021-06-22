@@ -54,7 +54,10 @@ export default function Trending(props) {
                   >
                     {allTrendingData.map((items, index) => (
                       <SwiperSlide key={index}>
-                        <Link href="">
+                        <Link 
+                          href={items.media_type === "tv" ? `/tv/${items.id}` : `/movie/${items.id}`}
+                          key={ items.id }
+                        >
                           <a>
                             <Image
                               loader={imageLoader}
@@ -65,7 +68,10 @@ export default function Trending(props) {
                             />                            
                           </a>
                         </Link>
-                        <Link href="">
+                        <Link 
+                          href={items.media_type === "tv" ? `/tv/${items.id}` : `/movie/${items.id}`}
+                          key={ items.id }
+                        >
                           <a>
                             <h1 className="mt-1 text-base sm:text-lg">{items.media_type === "tv" ? items.name : items.title}</h1>
                           </a>
@@ -101,7 +107,10 @@ export default function Trending(props) {
                   >
                     {movieTrendingData.map((items, index) => (
                       <SwiperSlide key={index}>
-                        <Link href="">
+                        <Link 
+                          href={`/movie/${items.id}`}
+                          key={ items.id }
+                        >
                           <a>
                             <Image
                               loader={imageLoader}
@@ -112,7 +121,10 @@ export default function Trending(props) {
                             />
                           </a>
                         </Link>
-                        <Link href="">
+                        <Link 
+                          href={`/movie/${items.id}`}
+                          key={ items.id }
+                        >
                           <a>
                             <h1 className="mt-1 text-base sm:text-lg">{items.title}</h1>
                           </a>
@@ -148,7 +160,10 @@ export default function Trending(props) {
                   >
                     {tvTrendingData.map((items, index) => (
                       <SwiperSlide key={index}>
-                        <Link href="">
+                        <Link 
+                          href={`/tv/${items.id}`}
+                          key={ items.id }
+                        >
                           <a>
                             <Image
                               loader={imageLoader}
@@ -159,7 +174,10 @@ export default function Trending(props) {
                             />
                           </a>
                         </Link>
-                        <Link href="">
+                        <Link 
+                          href={`/tv/${items.id}`}
+                          key={ items.id }
+                        >
                           <a>
                             <h1 className="mt-1 text-base sm:text-lg">{items.name}</h1>
                           </a>
@@ -204,7 +222,10 @@ export default function Trending(props) {
                   >
                     {movieTrendingData.map((items, index) => (
                       <SwiperSlide key={index}>
-                        <Link href="">
+                        <Link 
+                          href={`/movie/${items.id}`}
+                          key={ items.id }
+                        >
                           <a>
                             <Image
                               loader={imageLoader}
@@ -215,7 +236,10 @@ export default function Trending(props) {
                             />
                           </a>
                         </Link>
-                        <Link href="">
+                        <Link 
+                          href={`/movie/${items.id}`}
+                          key={ items.id }
+                        >
                           <a>
                             <h1 className="mt-1 text-base sm:text-lg">{items.title}</h1>
                           </a>
@@ -258,7 +282,10 @@ export default function Trending(props) {
                   >
                     {tvTrendingData.map((items, index) => (
                       <SwiperSlide key={index}>
-                        <Link href="">
+                        <Link 
+                          href={`/tv/${items.id}`}
+                          key={ items.id }
+                        >
                           <a>
                             <Image
                               loader={imageLoader}
@@ -269,7 +296,10 @@ export default function Trending(props) {
                             />
                           </a>
                         </Link>
-                        <Link href="">
+                        <Link 
+                          href={`/tv/${items.id}`}
+                          key={ items.id }
+                        >
                           <a>
                             <h1 className="mt-1 text-base sm:text-lg">{items.name}</h1>
                           </a>

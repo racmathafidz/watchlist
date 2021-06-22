@@ -42,7 +42,10 @@ export default function movieByGenre(props) {
           >
             {actionData.map((items, index) => (
               <SwiperSlide key={index}>
-                <Link href="">
+                <Link 
+                  href={`/movie/${items.id}`}
+                  key={ items.id }
+                >
                   <a>
                     <Image
                       loader={imageLoader}
@@ -53,7 +56,10 @@ export default function movieByGenre(props) {
                     />
                   </a>
                 </Link>
-                <Link href="">
+                <Link 
+                  href={`/movie/${items.id}`}
+                  key={ items.id }
+                >
                   <a>
                     <h1 className="mt-1 text-base sm:text-lg">{items.title}</h1>
                   </a>
@@ -89,7 +95,10 @@ export default function movieByGenre(props) {
           >
             {comedyData.map((items, index) => (
               <SwiperSlide key={index}>
-                <Link href="">
+                <Link 
+                  href={`/movie/${items.id}`}
+                  key={ items.id }
+                >
                   <a>
                     <Image
                       loader={imageLoader}
@@ -100,7 +109,10 @@ export default function movieByGenre(props) {
                     />
                   </a>
                 </Link>
-                <Link href="">
+                <Link 
+                  href={`/movie/${items.id}`}
+                  key={ items.id }
+                >
                   <a>
                     <h1 className="mt-1 text-base sm:text-lg">{items.title}</h1>
                   </a>
@@ -136,7 +148,10 @@ export default function movieByGenre(props) {
           >
             {horrorData.map((items, index) => (
               <SwiperSlide key={index}>
-                <Link href="">
+                <Link 
+                  href={`/movie/${items.id}`}
+                  key={ items.id }
+                >
                   <a>
                     <Image
                       loader={imageLoader}
@@ -147,7 +162,10 @@ export default function movieByGenre(props) {
                     />
                   </a>
                 </Link>
-                <Link href="">
+                <Link 
+                  href={`/movie/${items.id}`}
+                  key={ items.id }
+                >
                   <a>
                     <h1 className="mt-1 text-base sm:text-lg">{items.title}</h1>
                   </a>
@@ -183,7 +201,10 @@ export default function movieByGenre(props) {
           >
             {romanceData.map((items, index) => (
               <SwiperSlide key={index}>
-                <Link href="">
+                <Link 
+                  href={`/movie/${items.id}`}
+                  key={ items.id }
+                >
                   <a>
                     <Image
                       loader={imageLoader}
@@ -194,7 +215,10 @@ export default function movieByGenre(props) {
                     />
                   </a>
                 </Link>
-                <Link href="">
+                <Link 
+                  href={`/movie/${items.id}`}
+                  key={ items.id }
+                >
                   <a>
                     <h1 className="mt-1 mb-10 text-base sm:text-lg">{items.title}</h1>
                   </a>

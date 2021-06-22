@@ -42,7 +42,10 @@ export default function MoviesInTheaters(props) {
           >
             {movieInTheaterData.map((items, index) => (
               <SwiperSlide key={index}>
-                <Link href="">
+                <Link 
+                  href={`/movie/${items.id}`}
+                  key={ items.id }
+                >
                   <a>
                     <Image
                       loader={imageLoader}
@@ -53,7 +56,10 @@ export default function MoviesInTheaters(props) {
                     />                    
                   </a>
                 </Link>
-                <Link href="">
+                <Link 
+                  href={`/movie/${items.id}`}
+                  key={ items.id }
+                >
                   <a>
                     <h1 className="mt-1 text-base sm:text-lg">{items.title}</h1>
                   </a>
