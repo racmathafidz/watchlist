@@ -4,13 +4,16 @@ export default function footer() {
     return (
         <footer className="flex flex-col justify-center py-5 border-t border-truegray-900">
             <div className="flex justify-center items-center mb-3">
-                <BrandIcon/>
+                <BrandIcon footer/>
                 <a 
                     href="https://www.themoviedb.org/documentation/api"
                     target="_blank"
                     className="ml-5 mt-2"
                 >
-                    <img src="/tmdb-logo.svg" alt="TMDB" width="105" height="42"/>
+                    <img 
+                        src="/tmdb-logo.svg" 
+                        alt="TMDB"                         
+                        className="mt-1 sm:mt-0 w-24 sm:w-28"/>
                 </a>                
             </div>
             <div className="flex justify-center text-base sm:text-lg font-light">
