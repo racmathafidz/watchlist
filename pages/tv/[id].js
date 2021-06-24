@@ -2,10 +2,14 @@ import { useRouter } from 'next/router'
 import Head from 'next/head'
 
 import Layout from '../../components/layout'
+import DetailOverview from '../../components/detailOverview'
+import DetailVideos from '../../components/detailVideos'
 
-export default function TvDetail({ tvDetailData }) {
+export default function TvDetail(props) {
 
     const router = useRouter()
+
+    const { tvDetailData, tvVideoData, tvCreditData, tvSimilarData } = props    
 
     if (router.isFallback) {
         return (
@@ -26,31 +30,8 @@ export default function TvDetail({ tvDetailData }) {
     return (
         <Layout title={`${tvDetailData.name} | Watchlist`}>
             <main>
-                <div className="w-full h-full sm:h-96 lg:h-120 xl:h-140">                
-                    <img 
-                        className="w-full sm:w-96 lg:w-128 xl:w-180 h-full sm:h-96 lg:h-120 xl:h-140 sm:object-center sm:object-cover sm:z-0 bg-gradient-to-t from-red-500"
-                        src={`https://image.tmdb.org/t/p/original/${tvDetailData.backdrop_path}`} 
-                        alt="Backdrop" 
-                        align="right"
-                    />            
-                    <div className="flex flex-col w-full content-center justify-start px-3 sm:px-5 xl:px-8 sm:z-10 sm:absolute h-full sm:h-96 lg:h-120 xl:h-140 sm:bg-gradient-to-r sm:from-black sm:via-black">
-                        <div className="my-auto xl:pb-20 sm:w-1/2">
-                            <h1 className="text-3xl sm:text-4xl lg:text-5xl mb-4 mt-4 sm:mt-0 font-medium">{tvDetailData.name}</h1>
-                            <p className="sm:text-sm lg:text-base mb-4 text-justify font-light font-description">{tvDetailData.overview}</p>
-                            <p 
-                                className="sm:text-sm lg:text-base mb-4 font-light font-description"
-                            >
-                                {tvDetailData.first_air_date.substring(0,4)} | {tvDetailData.number_of_seasons >= 2 ? `${tvDetailData.number_of_seasons} Seasons` : `${tvDetailData.number_of_seasons} Season` } | &nbsp;
-                                {tvDetailData.genres.map( (items, index) => {
-                                    if (index === tvDetailData.genres.length -1) {
-                                        return items.name    
-                                    }
-                                    return items.name+", "
-                                })}
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                <DetailOverview detailData={tvDetailData} detailTv />
+                <DetailVideos detailData={tvVideoData}/>                               
             </main>
         </Layout>
     )
@@ -104,12 +85,34 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (paths) => {
     const id = paths.params.id
-    const res = await fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=${process.env.API_KEY}&language=en-US`)
-    const data = await res.json()
+
+    const tvDetailDataRes = await fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=${process.env.API_KEY}&language=en-US`)
+    const tvDetailData = await tvDetailDataRes.json()
+
+    const tvVideoRes = await fetch(`https://api.themoviedb.org/3/tv/${id}/videos?api_key=${process.env.API_KEY}&language=en-US`)
+    const tvVideoData = await tvVideoRes.json()
+    const filteredTvVideoData = await tvVideoData.results.filter( items => {
+        return items.site === "YouTube"
+    })
+
+    const tvCreditRes = await fetch(`https://api.themoviedb.org/3/tv/${id}/credits?api_key=${process.env.API_KEY}&language=en-US`)
+    const tvCreditData = await tvCreditRes.json()
+    const filteredTvCreditData = await tvCreditData.cast.filter( items => {
+        return items.known_for_department === "Acting" && items.profile_path !== null
+    })
+
+    const tvSimilarRes = await fetch(`https://api.themoviedb.org/3/tv/${id}/similar?api_key=${process.env.API_KEY}&language=en-US&page=1`)
+    const tvSimilarData = await tvSimilarRes.json()
+    const filteredTvSimilarData = await tvSimilarData.results.filter( items => {
+        return items.backdrop_path !== null && items.poster_path !== null
+    })
 
     return {
         props: {
-            tvDetailData: data
+            tvDetailData: tvDetailData,
+            tvVideoData: filteredTvVideoData,
+            tvCreditData: filteredTvCreditData,
+            tvSimilarData: filteredTvSimilarData
         },
         revalidate: 1
     }

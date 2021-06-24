@@ -2,11 +2,14 @@ import { useRouter } from 'next/router'
 import Head from 'next/head'
 
 import Layout from '../../components/layout'
-import durationFormat from '../../utils/durationFormat'
+import DetailOverview from '../../components/detailOverview'
+import DetailVideos from '../../components/detailVideos'
 
-export default function MovieDetail({ movieDetailData }) {
+export default function MovieDetail(props) {
 
     const router = useRouter()
+
+    const { movieDetailData, movieVideoData, movieCreditData, movieSimilarData } = props    
 
     if (router.isFallback) {        
         return (
@@ -27,31 +30,8 @@ export default function MovieDetail({ movieDetailData }) {
     return (
         <Layout title={`${movieDetailData.title} | Watchlist`}>
             <main>
-                <div className="w-full h-full sm:h-96 lg:h-120 xl:h-140">                
-                    <img 
-                        className="w-full sm:w-96 lg:w-128 xl:w-180 h-full sm:h-96 lg:h-120 xl:h-140 sm:object-center sm:object-cover sm:z-0 bg-gradient-to-t from-red-500"
-                        src={`https://image.tmdb.org/t/p/original/${movieDetailData.backdrop_path}`} 
-                        alt="Backdrop" 
-                        align="right"
-                    />            
-                    <div className="flex flex-col w-full content-center justify-start px-3 sm:px-5 xl:px-8 sm:z-10 sm:absolute h-full sm:h-96 lg:h-120 xl:h-140 sm:bg-gradient-to-r sm:from-black sm:via-black">
-                        <div className="my-auto xl:pb-20 sm:w-1/2">
-                            <h1 className="text-3xl sm:text-4xl lg:text-5xl mb-4 mt-4 sm:mt-0 font-medium">{movieDetailData.title}</h1>
-                            <p className="sm:text-sm lg:text-base mb-4 text-justify font-light font-description">{movieDetailData.overview}</p>
-                            <p 
-                                className="sm:text-sm lg:text-base mb-4 font-light font-description"
-                            >
-                                {movieDetailData.release_date.substring(0,4)} | {durationFormat(movieDetailData.runtime)} | &nbsp;
-                                {movieDetailData.genres.map( (items, index) => {
-                                    if (index === movieDetailData.genres.length -1) {
-                                        return items.name    
-                                    }
-                                    return items.name+", "
-                                })}
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                <DetailOverview detailData={movieDetailData} detailMovie />      
+                <DetailVideos detailData={movieVideoData}/>                
             </main>
         </Layout>
     )
@@ -105,12 +85,34 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (paths) => {
     const id = paths.params.id
-    const res = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.API_KEY}&language=en-US`)
-    const data = await res.json()
 
+    const movieDetailDataRes = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.API_KEY}&language=en-US`)
+    const movieDetailData = await movieDetailDataRes.json()
+
+    const movieVideoRes = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${process.env.API_KEY}&language=en-US`)
+    const movieVideoData = await movieVideoRes.json()
+    const filteredMovieVideoData = await movieVideoData.results.filter( items => {
+        return items.site === "YouTube"
+    })
+
+    const movieCreditRes = await fetch(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${process.env.API_KEY}&language=en-US`)
+    const movieCreditData = await movieCreditRes.json()
+    const filteredMovieCreditData = await movieCreditData.cast.filter( items => {
+        return items.known_for_department === "Acting" && items.profile_path !== null
+    })
+
+    const movieSimilarRes = await fetch(`https://api.themoviedb.org/3/movie/${id}/similar?api_key=${process.env.API_KEY}&language=en-US&page=1`)
+    const movieSimilarData = await movieSimilarRes.json()
+    const filteredMovieSimilarData = await movieSimilarData.results.filter( items => {
+        return items.backdrop_path !== null && items.poster_path !== null
+    })
+    
     return {
         props: {
-            movieDetailData: data
+            movieDetailData: movieDetailData,
+            movieVideoData: filteredMovieVideoData,
+            movieCreditData: filteredMovieCreditData,
+            movieSimilarData: filteredMovieSimilarData            
         },
         revalidate: 1
     }
