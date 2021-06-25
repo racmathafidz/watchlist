@@ -17,7 +17,7 @@ export default function detailSimilar(props) {
 
       if (movie === true) {
           return (
-              <div className="containers px-3 sm:px-5 xl:px-0 mb-5">
+              <div className="containers px-3 sm:px-5 xl:px-0 mb-5 sm:mb-16">
                 <h1 className="text-3xl py-5">Similar Like This</h1>
                 <Swiper 
                   slidesPerView={1} 
@@ -69,7 +69,7 @@ export default function detailSimilar(props) {
   
       if (tvShows === true) {
           return (
-              <div className="containers px-3 sm:px-5 xl:px-0 mb-5">
+              <div className="containers px-3 sm:px-5 xl:px-0 mb-5 sm:mb-16">
                 <h1 className="text-3xl py-5">Similar Like This</h1>
                 <Swiper 
                   slidesPerView={1} 
