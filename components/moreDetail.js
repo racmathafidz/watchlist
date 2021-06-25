@@ -60,7 +60,7 @@ export default function moreDetail(props) {
                         <h1 className="mt-1 text-base sm:text-lg text-gray-300">Languages</h1>
                         <h1 className="mt-1 text-sm sm:text-base">
                             {detailData.spoken_languages.map( (items, index) => {
-                                if (index === detailData.spoken_languages.length -1) {
+                                if (index === detailData.spoken_languages.length - 1) {
                                     return items.english_name
                                 }
                                 return items.english_name+", "
@@ -70,7 +70,7 @@ export default function moreDetail(props) {
                     <div className="flex flex-col">
                         <h1 className="mt-1 text-base sm:text-lg text-gray-300">Network</h1>                        
                         <h1 className="mt-1 text-sm sm:text-base">
-                            {detailData.networks[0].length <= 0 ? "-" : detailData.networks[0].name}
+                            {detailData.networks.length <= 0 ? "-" : detailData.networks[0].name}
                         </h1>                        
                     </div>
                 </div>                
