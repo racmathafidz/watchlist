@@ -96,9 +96,9 @@ export default function detailSimilar(props) {
                   className="mySwiper"
                 >
                   {similarData.map((items, index) => (
-                    <SwiperSlide key={index}>
+                    <SwiperSlide key={index}>                      
                       <Link 
-                        href={`/tv/${items.id}`}
+                        href={`/movie/${items.id}`}
                         key={ items.id }
                       >
                         <a>
@@ -109,13 +109,6 @@ export default function detailSimilar(props) {
                             width={150}
                             height={225}
                           />
-                        </a>
-                      </Link>
-                      <Link 
-                        href={`/movie/${items.id}`}
-                        key={ items.id }
-                      >
-                        <a>
                           <h1 className="mt-1 text-base sm:text-lg">{items.name}</h1>
                         </a>
                       </Link>
