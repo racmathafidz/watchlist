@@ -5,6 +5,7 @@ import Layout from '../../components/layout'
 import DetailOverview from '../../components/detailOverview'
 import DetailVideos from '../../components/detailVideos'
 import DetailCast from '../../components/detailCast'
+import MoreDetail from '../../components/moreDetail'
 import DetailSimilar from '../../components/detailSimilar'
 
 export default function MovieDetail(props) {
@@ -34,7 +35,8 @@ export default function MovieDetail(props) {
             <main>
                 <DetailOverview detailData={movieDetailData} detailMovie />      
                 <DetailVideos videoData={movieVideoData}/>  
-                <DetailCast castData={movieCreditData}/>       
+                <DetailCast castData={movieCreditData}/>  
+                <MoreDetail detailData={movieDetailData} movie />     
                 <DetailSimilar similarData={movieSimilarData} movie />         
             </main>
         </Layout>
@@ -110,13 +112,24 @@ export const getStaticProps = async (paths) => {
     const filteredMovieSimilarData = await movieSimilarData.results.filter( items => {
         return items.backdrop_path !== null && items.poster_path !== null
     })
+
+    const movieRecomendationRes = await fetch(`https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${process.env.API_KEY}&language=en-US&page=1`)
+    const movieRecomendationData = await movieRecomendationRes.json()
+    const filteredMovieRecomendationData = await movieRecomendationData.results.filter( items => {
+        return items.backdrop_path !== null && items.poster_path !== null
+    })
+
+    const similarAndRecomendationData = [
+        ...filteredMovieRecomendationData,
+        ...filteredMovieSimilarData
+    ]
     
     return {
         props: {
             movieDetailData: movieDetailData,
             movieVideoData: filteredMovieVideoData,
             movieCreditData: filteredMovieCreditData,
-            movieSimilarData: filteredMovieSimilarData            
+            movieSimilarData: similarAndRecomendationData            
         },
         revalidate: 1
     }

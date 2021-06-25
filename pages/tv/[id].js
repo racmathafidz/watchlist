@@ -6,6 +6,7 @@ import DetailOverview from '../../components/detailOverview'
 import DetailVideos from '../../components/detailVideos'
 import DetailCast from '../../components/detailCast'
 import SeasonList from '../../components/tvSeasonList'
+import MoreDetail from '../../components/moreDetail'
 import DetailSimilar from '../../components/detailSimilar'
 
 export default function TvDetail(props) {
@@ -37,6 +38,7 @@ export default function TvDetail(props) {
                 <DetailVideos videoData={tvVideoData}/> 
                 <DetailCast castData={tvCreditData}/>            
                 <SeasonList detailData={tvDetailData.seasons}/>
+                <MoreDetail detailData={tvDetailData} tvShows />
                 <DetailSimilar similarData={tvSimilarData} tvShows />
             </main>
         </Layout>
@@ -113,12 +115,23 @@ export const getStaticProps = async (paths) => {
         return items.backdrop_path !== null && items.poster_path !== null
     })
 
+    const tvRecomendationRes = await fetch(`https://api.themoviedb.org/3/tv/${id}/recommendations?api_key=${process.env.API_KEY}&language=en-US&page=1`)
+    const tvRecomendationData = await tvRecomendationRes.json()
+    const filteredTvRecomendationData = await tvRecomendationData.results.filter( items => {
+        return items.backdrop_path !== null && items.poster_path !== null
+    })
+
+    const similarAndRecomendationData = [
+        ...filteredTvRecomendationData,
+        ...filteredTvSimilarData
+    ]
+
     return {
         props: {
             tvDetailData: tvDetailData,
             tvVideoData: filteredTvVideoData,
             tvCreditData: filteredTvCreditData,
-            tvSimilarData: filteredTvSimilarData
+            tvSimilarData: similarAndRecomendationData
         },
         revalidate: 1
     }
