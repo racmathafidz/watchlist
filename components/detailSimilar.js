@@ -98,7 +98,7 @@ export default function detailSimilar(props) {
                   {similarData.map((items, index) => (
                     <SwiperSlide key={index}>                      
                       <Link 
-                        href={`/movie/${items.id}`}
+                        href={`/tv/${items.id}`}
                         key={ items.id }
                       >
                         <a>
