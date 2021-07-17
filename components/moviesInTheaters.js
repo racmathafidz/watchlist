@@ -5,9 +5,7 @@ import SwiperCore, { Navigation } from 'swiper/core'
 
 SwiperCore.use( Navigation );
 
-export default function MoviesInTheaters(props) {
-
-    const { movieInTheaterData } = props
+export default function MoviesInTheaters({ movieInTheaterData }) {
 
     const imageLoader = ({ src }) => {
       return `https://image.tmdb.org/t/p/w500/${src}`
