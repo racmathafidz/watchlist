@@ -138,7 +138,7 @@ export default function Search() {
                             href={`/${items.media_type}/${items.id}`}
                             key={ items.id }
                         >
-                            <a className={`${index === 0 ? 'mt-14 sm:mt-24 xl:mt-20 ' : ''}flex items-center border border-truegray-900 rounded-lg my-1`}>
+                            <a className={`${index === 0 ? 'mt-14 sm:mt-24 xl:mt-20 ' : ''}flex items-center border border-truegray-900 hover:text-truegray-300 rounded-lg my-1`}>
                                 <Image
                                   loader={imageLoader}
                                   src={items.poster_path === null ? "/" : items.poster_path}
