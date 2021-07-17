@@ -11,17 +11,17 @@ export default function moreDetail(props) {
                 <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 sm:gap-1 lg:gap-4">
                     <div className="flex flex-col">
                         <h1 className="mt-1 text-base sm:text-lg text-gray-300">Status</h1>
-                        <h1 className="mt-1 text-sm sm:text-base">{detailData.status}</h1>
+                        <h1 className="mt-1 text-sm sm:text-base">{detailData.status ? detailData.status : "-"}</h1>
                     </div>
                     <div className="flex flex-col">
                         <h1 className="mt-1 text-base sm:text-lg text-gray-300">Language</h1>
                         <h1 className="mt-1 text-sm sm:text-base">
-                            {detailData.spoken_languages.map( (items, index) => {
+                            {detailData.spoken_languages ? detailData.spoken_languages.map( (items, index) => {
                                 if (index === detailData.spoken_languages.length -1) {
                                     return items.english_name
                                 }
                                 return items.english_name+", "
-                            })}
+                            }) : "-"}
                         </h1>
                     </div>
                     <div className="flex flex-col">
@@ -54,17 +54,17 @@ export default function moreDetail(props) {
                     </div>
                     <div className="flex flex-col">
                         <h1 className="mt-1 text-base sm:text-lg text-gray-300">Status</h1>
-                        <h1 className="mt-1 text-sm sm:text-base">{detailData.status}</h1>
+                        <h1 className="mt-1 text-sm sm:text-base">{detailData.status ? detailData.status : "-"}</h1>
                     </div>
                     <div className="flex flex-col">
                         <h1 className="mt-1 text-base sm:text-lg text-gray-300">Languages</h1>
                         <h1 className="mt-1 text-sm sm:text-base">
-                            {detailData.spoken_languages.map( (items, index) => {
+                            {detailData.spoken_languages ? detailData.spoken_languages.map( (items, index) => {
                                 if (index === detailData.spoken_languages.length - 1) {
                                     return items.english_name
                                 }
                                 return items.english_name+", "
-                            })} 
+                            }) : "-"} 
                         </h1>
                     </div>
                     <div className="flex flex-col">
