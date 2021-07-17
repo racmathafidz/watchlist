@@ -20,7 +20,7 @@ export default function detailOverview(props) {
                         <p 
                             className="sm:text-sm lg:text-base mb-4 font-light font-description"
                         >
-                            {detailData.release_date.substring(0,4)} | {durationFormatter(detailData.runtime)} | &nbsp;
+                            {detailData.release_date ? detailData.release_date.substring(0,4) : "-"} | {durationFormatter(detailData.runtime)} | &nbsp;
                             {detailData.genres.map( (items, index) => {
                                 if (index === detailData.genres.length -1) {
                                     return items.name    
@@ -50,7 +50,7 @@ export default function detailOverview(props) {
                         <p 
                             className="sm:text-sm lg:text-base mb-4 font-light font-description"
                         >
-                            {detailData.first_air_date.substring(0,4)} | {detailData.number_of_seasons >= 2 ? `${detailData.number_of_seasons} Seasons` : `${detailData.number_of_seasons} Season` } &nbsp; 
+                            {detailData.first_air_date ? detailData.first_air_date.substring(0,4) : "-"} | {detailData.number_of_seasons >= 2 ? `${detailData.number_of_seasons} Seasons` : `${detailData.number_of_seasons} Season` } &nbsp; 
                             {detailData.episode_run_time.length <= 0 ? `` : detailData.episode_run_time[0] <= 60 ? `| ${detailData.episode_run_time[0]}m` : `| ${durationFormatter(detailData.episode_run_time[0])}`} | &nbsp;
                             {detailData.genres.map( (items, index) => {
                                 if (index === detailData.genres.length -1) {
