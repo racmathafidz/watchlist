@@ -9,7 +9,7 @@ Built with NextJS, TailwindCSS, and TMDB API.
 - [**NextJS**](https://nextjs.org)
 - [**PostCSS**](https://postcss.org/)
 - [**TailwindCSS**](https://tailwindcss.com/)
-- [**Vercel**](https://vercel.com/)
+- [**Netlify**](https://www.netlify.com/)
 
 ### Library
 - [**Axios**](https://github.com/axios/axios) : Fetching API
@@ -22,7 +22,7 @@ Built with NextJS, TailwindCSS, and TMDB API.
 - [**TMDB API**](https://www.themoviedb.org/documentation/api)
 
 ### Demo
-**Demo :** https://racx-watchlist.vercel.app/
+**Demo :** https://racx-watchlist.netlify.app/
 
 ### Getting Started
 
