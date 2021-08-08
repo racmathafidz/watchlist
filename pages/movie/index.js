@@ -25,7 +25,7 @@ export default function Movie(props) {
     )
 }
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const movieInTheaterRes = await fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.API_KEY}&language=en-US&page=1`)
   const movieInTheater = await movieInTheaterRes.json()
   const filteredMovieInTheaterData = movieInTheater.results.filter( items => {

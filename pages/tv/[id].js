@@ -45,53 +45,53 @@ export default function TvDetail(props) {
     )
 }
 
-export const getStaticPaths = async () => {
-    const tvTrendingRes = await fetch(`https://api.themoviedb.org/3/trending/tv/day?api_key=${process.env.API_KEY}`)
-    const tvTrending = await tvTrendingRes.json()
+// export const getStaticPaths = async () => {
+//     const tvTrendingRes = await fetch(`https://api.themoviedb.org/3/trending/tv/day?api_key=${process.env.API_KEY}`)
+//     const tvTrending = await tvTrendingRes.json()
 
-    const tvPopularRes = await fetch(`https://api.themoviedb.org/3/tv/popular?api_key=${process.env.API_KEY}&language=en-US&page=1`)
-    const tvPopular = await tvPopularRes.json()
+//     const tvPopularRes = await fetch(`https://api.themoviedb.org/3/tv/popular?api_key=${process.env.API_KEY}&language=en-US&page=1`)
+//     const tvPopular = await tvPopularRes.json()
 
-    const tvAiringRes = await fetch(`https://api.themoviedb.org/3/tv/on_the_air?api_key=${process.env.API_KEY}&language=en-US&page=1`)
-    const tvAiring = await tvAiringRes.json()
+//     const tvAiringRes = await fetch(`https://api.themoviedb.org/3/tv/on_the_air?api_key=${process.env.API_KEY}&language=en-US&page=1`)
+//     const tvAiring = await tvAiringRes.json()
      
-    const actionDataRes = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${process.env.API_KEY}&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&with_genres=10759&include_null_first_air_dates=false&with_watch_monetization_types=flatrate`)
-    const actionData = await actionDataRes.json()
+//     const actionDataRes = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${process.env.API_KEY}&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&with_genres=10759&include_null_first_air_dates=false&with_watch_monetization_types=flatrate`)
+//     const actionData = await actionDataRes.json()
 
-    const comedyDataRes = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${process.env.API_KEY}&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&with_genres=35&include_null_first_air_dates=false&with_watch_monetization_types=flatrate`)
-    const comedyData = await comedyDataRes.json()
+//     const comedyDataRes = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${process.env.API_KEY}&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&with_genres=35&include_null_first_air_dates=false&with_watch_monetization_types=flatrate`)
+//     const comedyData = await comedyDataRes.json()
 
-    const dramaDataRes = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${process.env.API_KEY}&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&with_genres=18&include_null_first_air_dates=false&with_watch_monetization_types=flatrate`)
-    const dramaData = await dramaDataRes.json()
+//     const dramaDataRes = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${process.env.API_KEY}&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&with_genres=18&include_null_first_air_dates=false&with_watch_monetization_types=flatrate`)
+//     const dramaData = await dramaDataRes.json()
 
-    const animationDataRes = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${process.env.API_KEY}&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&with_genres=16&include_null_first_air_dates=false&with_watch_monetization_types=flatrate`)
-    const animationData = await animationDataRes.json()
+//     const animationDataRes = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${process.env.API_KEY}&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&with_genres=16&include_null_first_air_dates=false&with_watch_monetization_types=flatrate`)
+//     const animationData = await animationDataRes.json()
 
-    const data = [
-        ...tvTrending.results,
-        ...tvPopular.results,
-        ...tvAiring.results,
-        ...actionData.results,
-        ...comedyData.results,
-        ...dramaData.results,
-        ...animationData.results
-    ]
+//     const data = [
+//         ...tvTrending.results,
+//         ...tvPopular.results,
+//         ...tvAiring.results,
+//         ...actionData.results,
+//         ...comedyData.results,
+//         ...dramaData.results,
+//         ...animationData.results
+//     ]
 
-    const paths = data.map( items => {
-        return {
-            params: {
-                id: items.id.toString()
-            }
-        }
-    })
+//     const paths = data.map( items => {
+//         return {
+//             params: {
+//                 id: items.id.toString()
+//             }
+//         }
+//     })
 
-    return {
-        paths,
-        fallback: true
-    }
-}
+//     return {
+//         paths,
+//         fallback: true
+//     }
+// }
 
-export const getStaticProps = async (paths) => {
+export const getServerSideProps = async (paths) => {
     const id = paths.params.id
 
     const tvDetailDataRes = await fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=${process.env.API_KEY}&language=en-US`)
@@ -132,7 +132,7 @@ export const getStaticProps = async (paths) => {
             tvVideoData: filteredTvVideoData,
             tvCreditData: filteredTvCreditData,
             tvSimilarData: similarAndRecomendationData
-        },
-        revalidate: 1
+        }
+        //revalidate: 1
     }
 }

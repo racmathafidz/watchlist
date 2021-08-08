@@ -31,7 +31,7 @@ export default function Home(props) {
   )
 }
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const allTrendingRes = await fetch(`https://api.themoviedb.org/3/trending/all/day?api_key=${process.env.API_KEY}`)
   const allTrending = await allTrendingRes.json()
   const filteredAllTrendingData = allTrending.results.filter( items => {

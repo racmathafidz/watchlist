@@ -43,53 +43,53 @@ export default function MovieDetail(props) {
     )
 }
 
-export const getStaticPaths = async () => {
-    const movieInTheaterRes = await fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.API_KEY}&language=en-US&page=1`)
-    const movieInTheater = await movieInTheaterRes.json()
+// export const getStaticPaths = async () => {
+//     const movieInTheaterRes = await fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.API_KEY}&language=en-US&page=1`)
+//     const movieInTheater = await movieInTheaterRes.json()
 
-    const movieTrendingRes = await fetch(`https://api.themoviedb.org/3/trending/movie/day?api_key=${process.env.API_KEY}`)
-    const movieTrending = await movieTrendingRes.json()
+//     const movieTrendingRes = await fetch(`https://api.themoviedb.org/3/trending/movie/day?api_key=${process.env.API_KEY}`)
+//     const movieTrending = await movieTrendingRes.json()
 
-    const moviePopularRes = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.API_KEY}&language=en-US&page=1`)
-    const moviePopular = await moviePopularRes.json()
+//     const moviePopularRes = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.API_KEY}&language=en-US&page=1`)
+//     const moviePopular = await moviePopularRes.json()
 
-    const actionDataRes = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=28&with_watch_monetization_types=flatrate`)
-    const actionData = await actionDataRes.json()
+//     const actionDataRes = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=28&with_watch_monetization_types=flatrate`)
+//     const actionData = await actionDataRes.json()
 
-    const comedyDataRes = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=35&with_watch_monetization_types=flatrate`)
-    const comedyData = await comedyDataRes.json()
+//     const comedyDataRes = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=35&with_watch_monetization_types=flatrate`)
+//     const comedyData = await comedyDataRes.json()
 
-    const horrorDataRes = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=27&with_watch_monetization_types=flatrate`)
-    const horrorData = await horrorDataRes.json()
+//     const horrorDataRes = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=27&with_watch_monetization_types=flatrate`)
+//     const horrorData = await horrorDataRes.json()
 
-    const romanceDataRes = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=10749&with_watch_monetization_types=flatrate`)
-    const romanceData = await romanceDataRes.json()
+//     const romanceDataRes = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=10749&with_watch_monetization_types=flatrate`)
+//     const romanceData = await romanceDataRes.json()
 
-    const data = [
-        ...movieInTheater.results,
-        ...movieTrending.results,
-        ...moviePopular.results,
-        ...actionData.results,
-        ...comedyData.results,
-        ...horrorData.results,
-        ...romanceData.results
-    ]
+//     const data = [
+//         ...movieInTheater.results,
+//         ...movieTrending.results,
+//         ...moviePopular.results,
+//         ...actionData.results,
+//         ...comedyData.results,
+//         ...horrorData.results,
+//         ...romanceData.results
+//     ]
 
-    const paths = data.map( items => {
-        return {
-            params: {
-                id: items.id.toString()
-            }
-        }
-    })
+//     const paths = data.map( items => {
+//         return {
+//             params: {
+//                 id: items.id.toString()
+//             }
+//         }
+//     })
 
-    return {
-        paths,
-        fallback: true
-    }
-}
+//     return {
+//         paths,
+//         fallback: true
+//     }
+// }
 
-export const getStaticProps = async (paths) => {
+export const getServerSideProps = async (paths) => {
     const id = paths.params.id
 
     const movieDetailDataRes = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.API_KEY}&language=en-US`)
@@ -130,7 +130,7 @@ export const getStaticProps = async (paths) => {
             movieVideoData: filteredMovieVideoData,
             movieCreditData: filteredMovieCreditData,
             movieSimilarData: similarAndRecomendationData            
-        },
-        revalidate: 1
+        }
+        //revalidate: 1
     }
 }

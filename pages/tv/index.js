@@ -23,7 +23,7 @@ export default function Tv(props) {
     )
 }
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
     const tvTrendingRes = await fetch(`https://api.themoviedb.org/3/trending/tv/day?api_key=${process.env.API_KEY}`)
     const tvTrending = await tvTrendingRes.json()
     const filteredTvTrendingData = tvTrending.results.filter( items => {
