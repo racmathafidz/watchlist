@@ -22,9 +22,9 @@ export default function TrendingSlide(props) {
               >
                 {allTrendingData.map((items, index) => (
                   <SwiperSlide key={index}>
-                    <div className="h-56 sm:h-96 lg:h-140">
+                    <div className="h-56 sm:h-96 lg:h-144">
                       <img
-                        className="w-full xl:h-140 object-center object-cover"
+                        className="w-full xl:h-144 object-top object-cover"
                         src={`https://image.tmdb.org/t/p/original/${items.backdrop_path}`}
                         alt="Trending Carousel"
                       />
@@ -59,9 +59,9 @@ export default function TrendingSlide(props) {
               >
                 {movieTrendingData.map((items, index) => (
                   <SwiperSlide key={index}>
-                    <div className="h-56 sm:h-96 lg:h-140">
+                    <div className="h-56 sm:h-96 lg:h-144">
                       <img
-                        className="w-full xl:h-140 object-center object-cover"
+                        className="w-full xl:h-144 object-top object-cover"
                         src={`https://image.tmdb.org/t/p/original/${items.backdrop_path}`}
                         alt="Trending Carousel"
                       />
@@ -96,9 +96,9 @@ export default function TrendingSlide(props) {
               >
                 {tvTrendingData.map((items, index) => (
                   <SwiperSlide key={index}>
-                    <div className="h-56 sm:h-96 lg:h-140">
+                    <div className="h-56 sm:h-96 lg:h-144">
                       <img
-                        className="w-full xl:h-140 object-center object-cover"
+                        className="w-full xl:h-144 object-top object-cover"
                         src={`https://image.tmdb.org/t/p/original/${items.backdrop_path}`}
                         alt="Trending Carousel"
                       />
