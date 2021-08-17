@@ -36,43 +36,51 @@ export default function Header() {
       return `https://image.tmdb.org/t/p/w500/${src}`
     }
 
-    const handleSearchChange = async (event) => {
-        let results
-        let filteredResults
-        const query = event.target.value              
+    const handleSearchChange = async (event) => {                            
 
-        if(query.length >= 3) {
+        if(event.target.value.length >= 3) {
             setSearchActive(true)
 
-            const response = await axios.get(`/api/search?q=${query}`)
-            results = response.data.data.results
-            
-            filteredResults = await results.filter( items => {
-                return items.media_type == "movie" || items.media_type == "tv" && items.backdrop_path !== null && items.poster_path !== null
-            })
-
-            setSearchResults(filteredResults)
+            handleSearchFetch(event.target.value)
 
             // Add Event Click Listener
             window.addEventListener('click', onClick)
 
             // Add Event Enter Listener
-            document.addEventListener("keyup", function(event) {
+            document.addEventListener("keyup", async function(event) {
                 if (event.key === 'Enter') {
+
                     router.push({
                         pathname: '/search',
-                        query: {q: query}
+                        query: {q: event.target.value}
                     })
+
+                    setSearchResults([])
+
+                    handleSearchFetch(event.target.value)
                 }
             }) 
         } else {                        
             setSearchActive(false)            
         }        
-    }       
+    }
+    
+    const handleSearchFetch = async (query) => {
+        let results
+        let filteredResults 
+
+        const response = await axios.get(`/api/search?q=${query}`)
+        results = response.data.data.results
+            
+        filteredResults = await results.filter( items => {
+            return items.media_type == "movie" || items.media_type == "tv" && items.backdrop_path !== null && items.poster_path !== null
+        })
+
+        setSearchResults(filteredResults)
+    }
 
     const onClick = event => {
-        if (searchRef.current && !searchRef.current.contains(event.target)) {    
-            console.log("null")
+        if (searchRef.current && !searchRef.current.contains(event.target)) {                
             setSearchResults([])
             setSearchActive(false)
             window.removeEventListener('click', onClick)
