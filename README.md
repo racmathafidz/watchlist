@@ -2,7 +2,7 @@
 ![alt text](https://github.com/racmathafidz/watchlist/blob/master/public/screely.png)
 
 ### About
-Browse your favorite movies and tv shows. See what's airing on tv or playing in theaters right now, get trending and popular, get recomendation, and many more:popcorn:. 
+Browse your favorite movies and tv shows. See what's airing on tv or playing in theaters right now, get trending and popular, get recomendation, and many more :popcorn:. 
 Built with NextJS, TailwindCSS, and TMDB API.
 
 ### Tech Stack
@@ -22,7 +22,7 @@ Built with NextJS, TailwindCSS, and TMDB API.
 - [**TMDB API**](https://www.themoviedb.org/documentation/api)
 
 ### Demo
-**Demo :** https://racx-watchlist.netlify.app/
+**Demo :** [**watchlist-flax.vercel.app**](https://watchlist-flax.vercel.app/)
 
 ### Getting Started
 
