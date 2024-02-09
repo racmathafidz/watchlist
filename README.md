@@ -9,7 +9,7 @@ Built with NextJS, TailwindCSS, and TMDB API.
 - [**NextJS**](https://nextjs.org)
 - [**PostCSS**](https://postcss.org/)
 - [**TailwindCSS**](https://tailwindcss.com/)
-- [**Netlify**](https://www.netlify.com/)
+- [**Vercel**](https://vercel.com/)
 
 ### Library
 - [**Axios**](https://github.com/axios/axios) : Fetching API
